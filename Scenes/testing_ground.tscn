@@ -1,19 +1,61 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwoh0rqvu0dw2"]
+[gd_scene load_steps=6 format=3 uid="uid://dwoh0rqvu0dw2"]
 
 [ext_resource type="PackedScene" uid="uid://c8qeu3co7grko" path="res://Scenes/player.tscn" id="1_y2xgt"]
 [ext_resource type="AudioStream" uid="uid://d4at8mq750fn" path="res://Assets/Benny-Hill-Theme-style-Royalty-free.mp3" id="2_o5ecv"]
 
+[sub_resource type="Animation" id="Animation_pg5l1"]
+resource_name = "peckAttack"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -1.94604, 6.28319]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.2, 1.43333, 1.5, 1.73333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-8.92, 0), Vector2(8.88, -10), Vector2(16, -5), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_iv8me"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m8ycc"]
+_data = {
+"RESET": SubResource("Animation_iv8me"),
+"peckAttack": SubResource("Animation_pg5l1")
+}
+
 [node name="TESTING GROUND" type="Node"]
 
-[node name="Player" parent="." instance=ExtResource("1_y2xgt")]
-texture_filter = 1
-position = Vector2(42, 65)
-
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(141, 54)
-zoom = Vector2(3, 3)
+position = Vector2(62, -28)
 
 [node name="funkyMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_o5ecv")
 autoplay = true
 parameters/looping = false
+
+[node name="Player" parent="." instance=ExtResource("1_y2xgt")]
+texture_filter = 1
+scale = Vector2(3, 3)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_m8ycc")
+}
