@@ -1,8 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://dwoh0rqvu0dw2"]
+[gd_scene load_steps=3 format=3 uid="uid://dwoh0rqvu0dw2"]
 
 [ext_resource type="PackedScene" uid="uid://c8qeu3co7grko" path="res://Scenes/player.tscn" id="1_y2xgt"]
+[ext_resource type="AudioStream" uid="uid://d4at8mq750fn" path="res://Assets/Benny-Hill-Theme-style-Royalty-free.mp3" id="2_o5ecv"]
 
 [node name="TESTING GROUND" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource("1_y2xgt")]
+texture_filter = 1
 position = Vector2(42, 65)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(141, 54)
+zoom = Vector2(3, 3)
+
+[node name="funkyMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_o5ecv")
+autoplay = true
+parameters/looping = false
