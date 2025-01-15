@@ -8,10 +8,7 @@
 [node name="Player" parent="." instance=ExtResource("1_y2xgt")]
 texture_filter = 1
 position = Vector2(42, 65)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(141, 54)
-zoom = Vector2(3, 3)
+speed = 150.0
 
 [node name="funkyMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_o5ecv")

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2dmok4osegfr"]
+
+[ext_resource type="Texture2D" uid="uid://cqvp10vu02ouq" path="res://Assets/farmerStab-Sheet.png" id="1_bnvky"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1u5e"]
+atlas = ExtResource("1_bnvky")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a485n"]
+atlas = ExtResource("1_bnvky")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ywg2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1u5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a485n")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 1.0
+}]
+
+[node name="Farmer" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1ywg2")
+animation = &"new_animation"
+frame_progress = 0.414283
