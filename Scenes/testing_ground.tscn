@@ -1,16 +1,64 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwoh0rqvu0dw2"]
+[gd_scene load_steps=7 format=3 uid="uid://dwoh0rqvu0dw2"]
 
+[ext_resource type="Script" path="res://Scenes/testing_ground.gd" id="1_17mha"]
 [ext_resource type="PackedScene" uid="uid://c8qeu3co7grko" path="res://Scenes/player.tscn" id="1_y2xgt"]
 [ext_resource type="AudioStream" uid="uid://d4at8mq750fn" path="res://Assets/Benny-Hill-Theme-style-Royalty-free.mp3" id="2_o5ecv"]
+[ext_resource type="PackedScene" uid="uid://c2dmok4osegfr" path="res://farmer.tscn" id="3_rq8eq"]
+[ext_resource type="Script" path="res://Scenes/parry_label.gd" id="5_y5bf6"]
+[ext_resource type="Script" path="res://Scenes/parry_count.gd" id="6_qnacs"]
 
 [node name="TESTING GROUND" type="Node"]
+script = ExtResource("1_17mha")
 
-[node name="Player" parent="." instance=ExtResource("1_y2xgt")]
-texture_filter = 1
-position = Vector2(42, 65)
-speed = 150.0
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 966.0
+offset_bottom = 543.0
+color = Color(0.384521, 0.567949, 0.222049, 1)
 
 [node name="funkyMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_o5ecv")
 autoplay = true
 parameters/looping = false
+
+[node name="Farmer" parent="." instance=ExtResource("3_rq8eq")]
+position = Vector2(741, 45)
+
+[node name="Player" parent="." instance=ExtResource("1_y2xgt")]
+texture_filter = 1
+position = Vector2(42, 65)
+
+[node name="instructions" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -187.0
+offset_bottom = 75.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+text = "<-- PARRY THIS MF
+
+(arrow keys + z to parry)"
+
+[node name="parryLabel" type="Label" parent="."]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -116.0
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "PARRY COUNT:"
+script = ExtResource("5_y5bf6")
+
+[node name="parryCount" type="Label" parent="."]
+offset_left = 891.0
+offset_top = 290.0
+offset_right = 938.0
+offset_bottom = 331.0
+text = "0"
+script = ExtResource("6_qnacs")
+
+[connection signal="goodParry" from="Player" to="." method="_on_player_good_parry"]
