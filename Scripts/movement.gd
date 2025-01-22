@@ -25,17 +25,7 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("parry"):
 		parry()
-	if Input.is_action_just_pressed("attack"):
-		if $Peck.flip_h == true:
-			$Peck.flip_h = false
-			$".".scale.x = -1
-			attack()
-			print("biboo")
-			$".".scale.x = 1
-			$Peck.flip_h = true
-		else:
-			attack()
-			print("tax")
+
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -81,25 +71,20 @@ func parry():
 	print("parrying")
 	animation.play("peck_parry")
 
-func attack():
-	attacking = true
-	print("attacking")
-	animation.play("peck_attack")
-	
 
 
 
-#func update_animation():
-	#if !parrying:
-		#if velocity.length() > 0:
-			#animation.play("peck_walk")
-		#else:
-			#animation.play("peck_idle")
-		#if velocity.x < 0:
-			#$Peck.flip_h = true
-#
-		#elif velocity.x > 0:
-			#$Peck.flip_h = false
+func update_animation():
+	if !parrying:
+		if velocity.length() > 0:
+			animation.play("peck_walk")
+		else:
+			animation.play("peck_idle")
+		if velocity.x < 0:
+			$Peck.flip_h = true
+
+		elif velocity.x > 0:
+			$Peck.flip_h = false
 
 
 		
