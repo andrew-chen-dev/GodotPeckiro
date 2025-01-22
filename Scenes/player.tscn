@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8qeu3co7grko"]
+[gd_scene load_steps=14 format=3 uid="uid://c8qeu3co7grko"]
 
 [ext_resource type="Script" path="res://Scripts/movement.gd" id="1_k6n63"]
 [ext_resource type="Texture2D" uid="uid://b0x6mjtvi0hai" path="res://Assets/peckIdle-Sheet.png" id="2_4bjat"]
 [ext_resource type="Texture2D" uid="uid://dfnorwujqufdy" path="res://Assets/peckWalk-Sheet.png" id="3_6qrtu"]
 [ext_resource type="Texture2D" uid="uid://xtqslb1tajfy" path="res://Assets/peckParryWithAGlow-Sheet.png" id="3_8rxyx"]
-[ext_resource type="AudioStream" uid="uid://bkrsugjsaoi2c" path="res://Assets/angry-chicken-imitations-79678.mp3" id="3_md0d2"]
 [ext_resource type="Script" path="res://Scenes/reflect.gd" id="5_nba61"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vbfkk"]
@@ -134,6 +133,8 @@ tracks/9/keys = {
 "update": 1,
 "values": [true]
 }
+<<<<<<< Updated upstream
+=======
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
@@ -160,7 +161,7 @@ tracks/11/keys = {
 }
 tracks/12/type = "value"
 tracks/12/imported = false
-tracks/12/enabled = true
+tracks/12/enabled = false
 tracks/12/path = NodePath("AudioStreamPlayer2D:stream")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
@@ -172,7 +173,7 @@ tracks/12/keys = {
 }
 tracks/13/type = "value"
 tracks/13/imported = false
-tracks/13/enabled = true
+tracks/13/enabled = false
 tracks/13/path = NodePath("AudioStreamPlayer2D:playing")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
@@ -185,22 +186,10 @@ tracks/13/keys = {
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/14/path = NodePath(".:attacking")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-5.403]
-}
-tracks/15/type = "value"
-tracks/15/imported = false
-tracks/15/enabled = true
-tracks/15/path = NodePath(".:attacking")
-tracks/15/interp = 1
-tracks/15/loop_wrap = true
-tracks/15/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -332,52 +321,29 @@ tracks/9/keys = {
 }
 tracks/10/type = "value"
 tracks/10/imported = false
-tracks/10/enabled = false
-tracks/10/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/10/enabled = true
+tracks/10/path = NodePath(".:can_move")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-10.806]
+"times": PackedFloat32Array(0, 1.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath(".:can_move")
+tracks/11/path = NodePath(".:attacking")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0, 1.8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false, true]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath(".:parrying")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0, 1.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, false]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath(".:attacking")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0, 1.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
 "values": [true, false]
 }
+>>>>>>> Stashed changes
 
 [sub_resource type="Animation" id="Animation_xulde"]
 resource_name = "peck_idle"
@@ -698,7 +664,6 @@ tracks/4/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_crq3v"]
 _data = {
 "RESET": SubResource("Animation_wlyal"),
-"peck_attack": SubResource("Animation_uto20"),
 "peck_idle": SubResource("Animation_xulde"),
 "peck_parry": SubResource("Animation_2s67j"),
 "peck_parrySuccess": SubResource("Animation_kvvrw"),
@@ -714,8 +679,19 @@ scale = Vector2(1.4, 1.4)
 shape = SubResource("RectangleShape2D_vbfkk")
 
 [node name="Peck" type="Sprite2D" parent="."]
+<<<<<<< Updated upstream
+modulate = Color(0.466181, 0.466181, 0.466181, 1)
+texture = ExtResource("3_8rxyx")
+=======
 texture = ExtResource("2_4bjat")
+>>>>>>> Stashed changes
 hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_crq3v")
+}
+autoplay = "peck_idle"
 
 [node name="Reflecting" type="Area2D" parent="."]
 script = ExtResource("5_nba61")
@@ -724,8 +700,10 @@ script = ExtResource("5_nba61")
 shape = SubResource("RectangleShape2D_gv5f2")
 disabled = true
 
+<<<<<<< Updated upstream
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+=======
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_md0d2")
 volume_db = -5.403
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -733,6 +711,6 @@ libraries = {
 "": SubResource("AnimationLibrary_crq3v")
 }
 
+>>>>>>> Stashed changes
 [connection signal="area_entered" from="Reflecting" to="." method="_on_reflect_area_entered"]
 [connection signal="area_entered" from="Reflecting" to="Reflecting" method="_on_area_entered"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

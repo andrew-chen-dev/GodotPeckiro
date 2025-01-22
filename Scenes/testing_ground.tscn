@@ -26,6 +26,7 @@ position = Vector2(741, 45)
 [node name="Player" parent="." instance=ExtResource("1_y2xgt")]
 texture_filter = 1
 position = Vector2(42, 65)
+can_move = true
 
 [node name="instructions" type="Label" parent="."]
 anchors_preset = 1

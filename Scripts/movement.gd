@@ -10,9 +10,11 @@ func _ready():
 
 @export var speed : float = 150
 @export var parrying = false
+<<<<<<< Updated upstream
+=======
 @export var attacking = false
 @export var isFacingRight = true
-
+>>>>>>> Stashed changes
 
 @export var can_move : bool = true:
 	set(value):
@@ -38,15 +40,40 @@ func _process(delta):
 	if (velocity.x < 0 && isFacingRight) || (!isFacingRight && velocity.x > 0):
 		print("condition met")
 		isFacingRight = !isFacingRight
+		#if(isFacingRight):
+		    #print(isFacingRight)
+		    #$".".scale.x = 1
+		#else:
+		    #print(isFacingRight)
 		$".".scale.x = -1
+##########PETERCODE END####################
 
-
-
+<<<<<<< Updated upstream
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _physics_process(delta):
+	if time > 0:
+		time -= delta
+	velocity = Input.get_vector("move_left","move_right","move_up","move_down") * speed
+	move_and_slide()
+	
+	if can_move:
+		if velocity.length() > 0:
+			animation.play("peck_walk")
+			print("walking")
+		else:
+			animation.play("peck_idle")
+			print("idle")
+		if velocity.x < 0:
+			$Peck.flip_h = true
+		elif velocity.x > 0:
+			$Peck.flip_h = false
+		
+=======
 
 func _physics_process(delta):
 	if time > 0:
 		time -= delta
-
+>>>>>>> Stashed changes
 	position += velocity * delta
 	
 	#Locks Peck to Screen
@@ -64,12 +91,32 @@ func parry():
 		print("parrying")
 		animation.play("peck_parry")
 
+<<<<<<< Updated upstream
+func update_animation():
+	if !parrying:
+		if velocity.length() > 0:
+			animation.play("peck_walk")
+		else:
+			animation.play("peck_idle")
+		if velocity.x < 0:
+			$Peck.flip_h = true
+		elif velocity.x > 0:
+			$Peck.flip_h = false
+		
+	
+	
+#func _input(event):
+	#
+#
+#func _on_animation_finished(anim_name: StringName) -> void:
+	#can_move = false
+=======
 func attack():
 	if can_move:
 		attacking = true
 		print("attacking")
 		animation.play("peck_attack")
-
+>>>>>>> Stashed changes
 
 
 func start(pos):
